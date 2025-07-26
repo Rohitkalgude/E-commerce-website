@@ -63,8 +63,102 @@ nav {
 }
 
 .sliderItem {
+  position: relative;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sliderTitle {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  color: white;
+  font-size: 60px;
+  font-weight: 900;
+  text-align: center;
+  z-index: 1;
+}
+
+.sliderImg {
+  z-index: 1;
+}
+
+.sliderPrice {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  color: white;
+  font-size: 60px;
+  font-weight: 300;
+  text-align: center;
+  border: 1px solid gray;
+  z-index: 1;
+}
+
+.slideBg {
+  width: 750px;
+  height: 750px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.buyButton {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  color: white;
+  background-color: black;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  border: 1px solid gray;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.buyButton:hover {
+  background-color: white;
+  color: black;
+}
+
+.sliderItem:nth-child(1) .slideBg {
+  background-color: #369e62;
+}
+
+.sliderItem:nth-child(2) .slideBg {
+  background-color: rebeccapurple;
+}
+
+.sliderItem:nth-child(3) .slideBg {
+  background-color: teal;
+}
+
+.sliderItem:nth-child(4) .slideBg {
+  background-color: cornflowerblue;
+}
+
+.sliderItem:nth-child(5) .slideBg {
+  background-color: rgba(124, 115, 80);
+}
+
+.sliderItem:nth-child(1) .sliderPrice {
+  color: #369e62;
+}
+
+.sliderItem:nth-child(2) .sliderPrice {
+  color: rebeccapurple;
+}
+
+.sliderItem:nth-child(3) .sliderPrice {
+  color: teal;
+}
+
+.sliderItem:nth-child(4) .sliderPrice {
+  color: cornflowerblue;
+}
+
+.sliderItem:nth-child(5) .sliderPrice {
+  color: rgba(124, 115, 80);
 }
