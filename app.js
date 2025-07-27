@@ -1,5 +1,8 @@
 const wrapper = document.querySelector(".sliderWrapper");
 const menuItems = document.querySelectorAll(".menuItem");
+const ProductButton = document.querySelector(".productButton");
+const Payment = document.querySelector(".payment");
+const close = document.querySelector(".close");
 
 const products = [
   {
@@ -87,8 +90,8 @@ let choosenProduct = products[0];
 const ProductImg = document.querySelector(".productImg");
 const ProductTitle = document.querySelector(".productTitle");
 const ProductPrice = document.querySelector(".productPrice");
-const Colors = document.querySelectorAll(".color");
-const Sizes = document.querySelectorAll(".size");
+const colors = document.querySelectorAll(".color");
+const sizes = document.querySelectorAll(".size");
 
 menuItems.forEach((item, index) => {
   item.addEventListener("click", () => {
@@ -104,21 +107,21 @@ menuItems.forEach((item, index) => {
     ProductImg.src = choosenProduct.colors[0].img;
 
     //assing new colors
-    Colors.forEach((color, index) => {
+    colors.forEach((color, index) => {
       color.style.backgroundColor = choosenProduct.colors[index].code;
     });
   });
 });
 
-Colors.forEach((color, index) => {
+colors.forEach((color, index) => {
   color.addEventListener("click", () => {
     ProductImg.src = choosenProduct.colors[index].img;
   });
 });
 
-Sizes.forEach((size, index) => {
+sizes.forEach((size, index) => {
   size.addEventListener("click", () => {
-    Sizes.addEventListener((size) => {
+    sizes.addEventListener((size) => {
       size.style.backgroundColor = "white";
       size.style.color = "black";
     });
@@ -126,4 +129,12 @@ Sizes.forEach((size, index) => {
     size.style.backgroundColor = "black";
     size.style.color = "white";
   });
+});
+
+ProductButton.addEventListener("click", () => {
+  Payment.style.display = "flex";
+});
+
+close.addEventListener("click", () => {
+  Payment.style.display = "none";
 });
