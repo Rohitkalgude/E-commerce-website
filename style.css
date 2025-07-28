@@ -30,9 +30,9 @@ nav {
 
 .logo {
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 800;
   text-transform: uppercase;
-  color: rgb(191, 189, 189);
+  color: white;
 }
 
 .searchbox {
@@ -118,4 +118,43 @@ nav {
 
 .login-btn:hover {
   background-color: #fc8524;
+}
+
+
+footer {
+  padding: 40px 60px;
+  font-size: 1.1rem;
+  color: #eee;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: lighter;
+  gap: 30px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: rgb(19, 19, 19);
+}
+
+.footer-container p {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  cursor: pointer;
+  color: #333335;
+  transition: color 0.3s;
+}
+
+.footer-column p:hover {
+  color: black;
 }
