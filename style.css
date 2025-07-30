@@ -159,7 +159,7 @@ h1 {
   width: 100%;
   padding: 1rem;
   border: 1px solid #e0e0e0;
-  background-color: #fff;
+  background-color: whitesmoke;
   font-family: Arial, sans-serif;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -168,7 +168,7 @@ h1 {
 .product-title {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-top: 2rem;
   color: #333;
 }
 
@@ -177,7 +177,10 @@ h1 {
   height: 300px;
   background-color: whitesmoke;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 20px;
+  display: block;
+  margin: 0 auto;
 }
 
 .price-section {
@@ -233,41 +236,52 @@ h1 {
   color: white;
   font-size: 14px;
 }
-
 footer {
-  padding: 40px 60px;
-  font-size: 1.1rem;
-  background-color: #f9f9f9;
-}
-
-.footer-container {
+  background-color: #111; /* Dark footer */
+  color: #fff;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   flex-wrap: wrap;
-  font-weight: lighter;
-  gap: 30px;
+  justify-content: space-between;
+  padding: 40px 60px;
+  font-family: 'Arial', sans-serif;
 }
 
 .footer-column {
-  flex: 1;
-  min-width: 200px;
+  flex: 1 1 200px;
+  margin: 20px;
 }
 
 .footer-column h2 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  color: rgb(19, 19, 19);
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #f5f5f5;
+  position: relative;
 }
 
-.footer-container p {
-  margin-bottom: 8px;
+.footer-column h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background-color: #f5f5f5;
+  margin-top: 8px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  font-size: 14px;
+  margin-bottom: 10px;
   line-height: 1.6;
-  cursor: pointer;
-  color: #333335;
-  transition: color 0.3s;
+  color: #ccc;
 }
 
-.footer-column p:hover {
-  color: black;
+.footer-column li:hover {
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
