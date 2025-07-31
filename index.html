@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nike Store</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -17,7 +18,7 @@
   <body>
     <nav>
       <div class="navTop">
-        <h1 class="logo">Footwear</h1>
+        <h1 class="logo">Loopz</h1>
 
         <div class="searchbox">
           <input
@@ -46,141 +47,190 @@
     </nav>
 
     <main>
-      <div class="slider-container">
-        <button id="right-btn">&#10095;</button>
+      <div class="slider-wrapper">
+        <input type="radio" name="slider" id="slide1" checked />
+        <input type="radio" name="slider" id="slide2" />
+        <input type="radio" name="slider" id="slide3" />
+        <input type="radio" name="slider" id="slide4" />
+        <input type="radio" name="slider" id="slide5" />
 
-        <div class="firsts" id="slider">
-          <img src="./img/first3.jpeg" alt="" />
-          <img src="./img/first4.jpeg" alt="" />
-          <img src="./img/first5.jpeg" alt="" />
-          <img src="./img/first1.jpeg" alt="" />
-          <img src="./img/first2.jpeg" alt="" />
+        <div class="slider">
+          <div class="slides">
+            <img src="./img/first1.jpeg" alt="" />
+            <img src="./img/first2.jpeg" alt="" />
+            <img src="./img/first3.jpeg" alt="" />
+            <img src="./img/first4.jpeg" alt="" />
+            <img src="./img/first5.jpeg" alt="" />
+          </div>
         </div>
-        <button id="left-btn">&#10094;</button>
+
+        <div class="navigation">
+          <label for="slide1" class="bar"></label>
+          <label for="slide2" class="bar"></label>
+          <label for="slide3" class="bar"></label>
+          <label for="slide4" class="bar"></label>
+          <label for="slide5" class="bar"></label>
+        </div>
       </div>
 
-      <h1>Best Sellers</h1>
+      <div class="collection">
+        <h2>Shop by collection</h2>
 
-      <div class="products">
-        <div class="product-card">
-          <img src="./img/air.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+        <div class="offres">
+          <img src="./img/men.jpeg" alt="" />
+          <img src="./img/Women.jpeg" alt="" />
+          <img src="./img/Limited_Stock.png" alt="" />
+          <img src="./img/Trwnding.png" alt="" />
+        </div>
+      </div>
+
+      <div class="product-section">
+        <h1 class="section-title">Trending Products</h1>
+
+        <div class="products">
+          <div class="product-card">
+            <img src="./img/air.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
+
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
 
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
-        </div>
+          <div class="product-card">
+            <img src="./img/blazer.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
 
-        <div class="product-card">
-          <img src="./img/blazer.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
 
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
-        </div>
+          <div class="product-card">
+            <img src="./img/crater.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
 
-        <div class="product-card">
-          <img src="./img/crater.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
 
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
-        </div>
+          <div class="product-card">
+            <img src="./img/hippie.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
 
-        <div class="product-card">
-          <img src="./img/hippie.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
 
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
-        </div>
+          <div class="product-card">
+            <img src="./img/jordan.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
 
-        <div class="product-card">
-          <img src="./img/jordan.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
 
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
-        </div>
+          <div class="product-card">
+            <img src="./img/air2.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
 
-        <div class="product-card">
-          <img src="./img/air2.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
 
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
-        </div>
+          <div class="product-card">
+            <img src="./img/hippie2.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
 
-        <div class="product-card">
-          <img src="./img/hippie2.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
 
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
-        </div>
+          <div class="product-card">
+            <img src="./img/jordan2.png" alt="air" />
+            <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
+            <div class="price-section">
+              <span class="new-price">Rs. 2,499</span>
+              <span class="old-price">Rs. 3,299</span>
+              <span class="discount">24% OFF</span>
+            </div>
 
-        <div class="product-card">
-          <img src="./img/jordan2.png" alt="air" />
-          <h4 class="product-title">Chunky Lace Ups for Women : Ivory</h4>
-          <div class="price-section">
-            <span class="new-price">Rs. 2,499</span>
-            <span class="old-price">Rs. 3,299</span>
-            <span class="discount">24% OFF</span>
+            <button class="add-to-cart">
+              <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
+              ADD TO CART
+            </button>
           </div>
-
-          <button class="add-to-cart">
-            <span class="cart-icon"><i class="fa fa-shopping-cart"></i></span>
-            ADD TO CART
-          </button>
         </div>
+      </div>
+
+      <div class="offers">
+        <img src="./img/add2.jpeg" alt="" />
+      </div>
+
+      <div class="categories">
+        <h2>Explore our categories</h2>
+
+        <div class="explore">
+          <img src="./img/1.png" alt="" />
+          <img src="./img/2.png" alt="" />
+          <img src="./img/3.png" alt="" />
+          <img src="./img/4.png" alt="" />
+          <img src="./img/5.png" alt="" />
+          <img src="./img/6.png" alt="" />
+          <img src="./img/7.png" alt="" />
+          <img src="./img/8.png" alt="" />
+        </div>
+      </div>
+
+      <div class="truted">
+        <img src="./img/add.jpeg" alt="" />
       </div>
 
       <div class="brand">

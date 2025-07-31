@@ -120,8 +120,161 @@ nav {
   background-color: #fc8524;
 }
 
-h1 {
+.slider-wrapper {
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  overflow: hidden;
+  margin-top: 3px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.slides {
+  display: flex;
+  width: 500%;
+  display: flex;
+  transition: all 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 100vw;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.slide {
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+#slide1:checked ~ .slider .slides {
+  transform: translateX(0%);
+}
+#slide2:checked ~ .slider .slides {
+  transform: translateX(-100vw);
+}
+#slide3:checked ~ .slider .slides {
+  transform: translateX(-200vw);
+}
+#slide4:checked ~ .slider .slides {
+  transform: translateX(-300vw);
+}
+#slide5:checked ~ .slider .slides {
+  transform: translateX(-400vw);
+}
+
+.navigation {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bar {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: #ffffffaa;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.bar:hover {
+  background: white;
+}
+
+.collection {
   text-align: center;
+  padding: 2rem;
+}
+
+.collection h2 {
+  margin-top: 4rem;
+  font-size: 1.9rem;
+  font-weight: bold;
+}
+
+.offres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.3rem;
+  margin-top: 2rem;
+}
+
+.offers img {
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.offres img:hover {
+  transform: scale(1.05);
+}
+
+.categories {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.categories h2 {
+  font-size: 1.9rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.explore {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.explore img {
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.truted {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.truted img {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.product-section {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 5rem;
+}
+
+.section-title {
+  font-size: 1.9rem;
+  font-weight: bold;
+  color: #222;
+  text-transform: uppercase;
+  display: inline-block;
 }
 
 .products {
@@ -189,6 +342,8 @@ h1 {
   padding: 3px 6px;
   border-radius: 4px;
   font-size: 13px;
+  margin: auto;
+
   font-weight: 600;
   color: green;
 }
@@ -217,43 +372,37 @@ h1 {
   font-size: 14px;
 }
 
-.slider-container {
-  position: relative;
-  margin: 8px 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.offers {
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 100vw;
 }
 
-.firsts {
-  display: flex;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-
-.firsts img {
+.offers img {
+  width: 100%;
   height: auto;
-  flex-shrink: 0;
-  margin-right: 10px;
-  border-radius: 8px;
-  object-fit: cover;
+  display: block;
 }
 
-.firsts::-webkit-scrollbar {
-  display: none;
+.brand {
+  text-align: center;
+  margin-top: 5rem;
 }
 
-button {
-  position: absolute;
-  background-color: #111;
-  color: white;
-  border: none;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 2;
+.Brands {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.Brands img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: contain;
 }
 
 footer {
@@ -304,24 +453,4 @@ footer {
   color: #fff;
   cursor: pointer;
   transition: 0.3s ease;
-}
-
-.brand {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.Brands {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.Brands img {
-  width: 10rem;
-  height: 10rem;
-  object-fit: contain;
 }
