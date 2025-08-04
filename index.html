@@ -29,13 +29,6 @@
           <img src="./img/search.png" alt="search" class="searchIcon" />
         </div>
 
-        <div class="searchcontainer">
-          <p>Search Results</p>
-          <div id="searchResults"></div>
-        </div>
-
-        <p class="no-results">No matching products found.</p>
-
         <ul class="navLinks">
           <li><a href="./men.html">Men</a></li>
           <li><a href="./women.html">Women</a></li>
@@ -45,13 +38,22 @@
         </ul>
 
         <div class="navItem actions">
-          <i class="fa-solid fa-cart-shopping"></i>
+          <i class="fa-solid fa-cart-shopping" id="add"></i>
           <button class="login-btn">
             <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
           </button>
         </div>
       </div>
     </nav>
+
+    <div class="search-container" id="searchSection" style="display: none">
+      <h2 id="searchTitle">Search Results</h2>
+      <div id="searchResults" class="product-grid"></div>
+    </div>
+
+    <div class="no-results" id="noResults" style="display: none">
+      No matching products found.
+    </div>
 
     <main>
       <div class="slider-wrapper">
