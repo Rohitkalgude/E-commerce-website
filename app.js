@@ -11,62 +11,82 @@ document.addEventListener("DOMContentLoaded", () => {
   const noResults = document.querySelector(".no-results");
   const mainProductContainer = document.getElementById("productContainer");
 
+  const cartCount = document.getElementById("cartCount");
+  const itemShow = document.getElementById("itemShow");
+  const cartToggle = document.getElementById("cartToggle");
+  const cartPanel = document.getElementById("cartPanel");
+
+  let count = parseInt(localStorage.getItem("cartCount")) || 0;
+
+  let cartItems = localStorage.getItem("cartItems")
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [];
+
+  cartItems = cartItems.map((item) => {
+    return {
+      ...item,
+      qty: typeof item.qty === "number" && item.qty > 0 ? item.qty : 1,
+    };
+  });
+
+  cartCount.textContent = count;
+
   const Products = [
     {
       img: "./img/air.png",
       title: "Nike Air Force 1",
       newprice: "Rs. 2,499",
       oldprice: "Rs. 3,299",
-      discount: "24%",
+      discount: "24% OFF",
     },
     {
       img: "./img/blazer.png",
       title: "Nike Blazer",
       newprice: "Rs. 1,499",
       oldprice: "Rs. 2,299",
-      discount: "20%",
+      discount: "20% OFF",
     },
     {
       img: "./img/crater.png",
       title: "Nike Space Hippie",
       newprice: "Rs. 4,499",
       oldprice: "Rs. 5,299",
-      discount: "30%",
+      discount: "30% OFF",
     },
     {
       img: "./img/hippie.png",
       title: "Nike Jordan 1",
       newprice: "Rs. 2,599",
       oldprice: "Rs. 3,599",
-      discount: "35%",
+      discount: "35% OFF",
     },
     {
       img: "./img/jordan.png",
       title: "Nike Blazer 2",
       newprice: "Rs. 3,499",
       oldprice: "Rs. 5,299",
-      discount: "10%",
+      discount: "10% OFF",
     },
     {
       img: "./img/air2.png",
       title: "Nike Air Force 2",
       newprice: "Rs. 2,499",
       oldprice: "Rs. 5,299",
-      discount: "26%",
+      discount: "26% OFF",
     },
     {
       img: "./img/hippie2.png",
       title: "Nike Air Force 1",
       newprice: "Rs. 2,499",
       oldprice: "Rs. 3,299",
-      discount: "24%",
+      discount: "24% OFF",
     },
     {
       img: "./img/jordan2.png",
       title: "Nike Jordan 1",
       newprice: "Rs. 2,499",
       oldprice: "Rs. 3,299",
-      discount: "24%",
+      discount: "24% OFF",
     },
   ];
 
@@ -152,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createProductCard(product) {
     return `
-          <div class="product-card">
+      <div class="product-card">
         <span class="discount">${product.discount}</span>
         <img src="${product.img}" alt="${product.title}" />
         <h3 class="product-title">${product.title}</h3>
@@ -166,8 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
           data-price="${product.newprice}"
           data-img="${product.img}"
           data-oldprice="${product.oldprice}"
-          data-discount="${product.discount}"
-        >
           <span class="cart-icon">🛒</span> Add to Cart
         </button>
       </div>
@@ -176,32 +194,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderInitialProducts() {
     mainProductContainer.innerHTML = Products.map(createProductCard).join("");
+    setupCartButtons();
   }
 
   function renderBestSellers() {
     Slider.innerHTML = BestSellers.map(
       (product) => `
-    <div class="product-cards">
-      <img src="${product.img}" alt="${product.title}" />
-      <h4 class="product-title">${product.title}</h4>
-      <div class="price-section">
-        <span class="new-price">${product.newprice}</span>
-        <span class="old-price">${product.oldprice}</span>
-        <span class="discount">${product.discount}</span>
+      <div class="product-cards">
+        <img src="${product.img}" alt="${product.title}" />
+        <h4 class="product-title">${product.title}</h4>
+        <div class="price-section">
+          <span class="new-price">${product.newprice}</span>
+          <span class="old-price">${product.oldprice}</span>
+          <span class="discount">${product.discount}</span>
+        </div>
+        <button 
+          class="add-to-cart"
+          data-name="${product.title}"
+          data-price="${product.newprice}"
+          data-img="${product.img}"
+          data-oldprice="${product.oldprice}"
+          <i class="fa fa-shopping-cart cart-icon"></i> ADD TO CART
+        </button>
       </div>
-      <button 
-        class="add-to-cart"
-        data-name="${product.title}"
-        data-price="${product.newprice}"
-        data-img="${product.img}"
-        data-oldprice="${product.oldprice}"
-        data-discount="${product.discount}"
-      >
-        <i class="fa fa-shopping-cart cart-icon"></i> ADD TO CART
-      </button>
-    </div>
-  `
+    `
     ).join("");
+    setupCartButtons();
   }
 
   function handleSearch(query) {
@@ -211,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     searchResults.innerHTML = results.map(createProductCard).join("");
+    setupCartButtons();
 
     if (results.length > 0) {
       searchSection.style.display = "block";
@@ -224,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim();
-    if (query.length === 0) {
+    if (!query) {
       searchSection.style.display = "none";
       noResults.style.display = "none";
       return;
@@ -232,78 +251,138 @@ document.addEventListener("DOMContentLoaded", () => {
     handleSearch(query);
   });
 
-  let count = localStorage.getItem("cartCount")
-    ? parseInt(localStorage.getItem("cartCount"))
-    : 0;
-
-  let cartItems = localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [];
-
-  const cartCount = document.getElementById("cartCount");
-  const itemShow = document.getElementById("itemShow");
-  const cartToggle = document.getElementById("cartToggle");
-  const cartPanel = document.getElementById("cartPanel");
-
-  cartCount.textContent = count;
-
   function displayCartItems() {
     itemShow.innerHTML = "";
+    let totalPrice = 0;
 
     if (cartItems.length === 0) {
       itemShow.innerHTML = "<p>Your cart is empty.</p>";
       return;
     }
 
-    cartItems.forEach((product) => {
+    cartItems.forEach((product, index) => {
       const div = document.createElement("div");
       div.className = "cart-item";
+
+      let price = parseFloat(
+        product.newprice.toString().replace(/[^\d.]/g, "")
+      );
+      
+      totalPrice += price * product.qty;
+
       div.innerHTML = `
       <img src="${product.img}" alt="${product.title}" />
       <div class="cart-details">
         <h4>${product.title}</h4>
-        <p>
-          <strong>Rs. ${product.newprice}</strong> 
-          <span>Rs. ${product.oldprice || ""}</span> 
-          <span style="color: green;">${product.discount || ""}</span>
-        </p>
+        <p><strong>₹${price.toFixed(2)}</strong></p>
+        <div class="quantity-controls">
+          <button class="qty-btn decrease" data-index="${index}">-</button>
+          <span class="qty-display">${product.qty}</span>
+          <button class="qty-btn increase" data-index="${index}">+</button>
+        </div>
       </div>
     `;
+
       itemShow.appendChild(div);
     });
+
+    const processDiv = document.createElement("div");
+    processDiv.className = "process";
+    processDiv.innerHTML = `
+    <div class="cart-total">
+      <h4>Total: ₹${totalPrice.toFixed(2)}</h4>
+    </div>
+    <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+  `;
+
+    itemShow.appendChild(processDiv);
+
+    setupQuantityButtons(); 
   }
 
-  function setupCartButtons() {
-    const cartButtons = document.querySelectorAll(".add-to-cart");
-
-    cartButtons.forEach((btn) => {
+  function setupQuantityButtons() {
+    document.querySelectorAll(".qty-btn.decrease").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const name = btn.getAttribute("data-name") || "No Title";
-        const price = btn.getAttribute("data-price") || "0";
-        const img = btn.getAttribute("data-img") || "";
-        const oldPrice = btn.getAttribute("data-oldprice") || "";
-        const discount = btn.getAttribute("data-discount") || "";
+        const index = btn.dataset.index;
+        if (cartItems[index].qty > 1) {
+          cartItems[index].qty--;
+          count--;
+        } else {
+          count -= cartItems[index].qty;
+          cartItems.splice(index, 1);
+        }
+        updateCart();
+      });
+    });
 
-        cartItems.push({
-          title: name,
-          newprice: price,
-          img: img,
-          oldprice: oldPrice,
-          discount: discount,
-        });
-
+    document.querySelectorAll(".qty-btn.increase").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const index = btn.dataset.index;
+        cartItems[index].qty++;
         count++;
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        localStorage.setItem("cartCount", count);
-
-        cartCount.textContent = count;
-        displayCartItems();
+        updateCart();
       });
     });
   }
 
-  cartToggle.addEventListener("click", () => {
+  function updateCart() {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("cartCount", count);
+    cartCount.textContent = count;
+    displayCartItems();
+  }
+
+  function setupCartButtons() {
+    document.querySelectorAll(".add-to-cart").forEach((btn) => {
+      btn.removeEventListener("click", handleAddToCart);
+      btn.addEventListener("click", handleAddToCart);
+    });
+  }
+
+  function handleAddToCart(e) {
+    const btn = e.currentTarget;
+
+    const name = btn.dataset.name;
+    const price = btn.dataset.price;
+    const img = btn.dataset.img;
+    const oldprice = btn.dataset.oldprice;
+    const discount = btn.dataset.discount;
+
+    let existingIndex = cartItems.findIndex((item) => item.title === name);
+
+    if (existingIndex !== -1) {
+      cartItems[existingIndex].qty += 1;
+    } else {
+      cartItems.push({
+        title: name,
+        newprice: price,
+        oldprice: oldprice,
+        discount: discount,
+        img: img,
+        qty: 1,
+      });
+    }
+
+    count++;
+    updateCart();
+  }
+
+  cartPanel.addEventListener("click", (e) => e.stopPropagation());
+
+  cartToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
     cartPanel.classList.toggle("active");
+  });
+
+  closeCartPanel.addEventListener("click", (e) => {
+    e.stopPropagation();
+    cartPanel.classList.remove("active");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!cartToggle.contains(e.target) && !cartPanel.contains(e.target)) {
+      cartPanel.classList.remove("active");
+    }
   });
 
   BtnLeft.addEventListener("click", () => {
@@ -321,6 +400,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderInitialProducts();
   renderBestSellers();
-  setupCartButtons();
   displayCartItems();
 });
