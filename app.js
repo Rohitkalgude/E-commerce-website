@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createProductCard(product) {
     return `
-      <div class="product-card">
+          <div class="product-card">
         <span class="discount">${product.discount}</span>
         <img src="${product.img}" alt="${product.title}" />
         <h3 class="product-title">${product.title}</h3>
@@ -160,7 +160,16 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="new-price">${product.newprice}</span>
           <span class="old-price">${product.oldprice}</span>
         </div>
-        <button class="add-to-cart"><span class="cart-icon">🛒</span> Add to Cart</button>
+        <button 
+          class="add-to-cart" 
+          data-name="${product.title}"
+          data-price="${product.newprice}"
+          data-img="${product.img}"
+          data-oldprice="${product.oldprice}"
+          data-discount="${product.discount}"
+        >
+          <span class="cart-icon">🛒</span> Add to Cart
+        </button>
       </div>
     `;
   }
@@ -172,17 +181,26 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderBestSellers() {
     Slider.innerHTML = BestSellers.map(
       (product) => `
-      <div class="product-cards">
-        <img src="${product.img}" alt="${product.title}" />
-        <h4 class="product-title">${product.title}</h4>
-        <div class="price-section">
-          <span class="new-price">${product.newprice}</span>
-          <span class="old-price">${product.oldprice}</span>
-          <span class="discount">${product.discount}</span>
-        </div>
-        <button class="add-to-cart"><i class="fa fa-shopping-cart cart-icon"></i> ADD TO CART</button>
+    <div class="product-cards">
+      <img src="${product.img}" alt="${product.title}" />
+      <h4 class="product-title">${product.title}</h4>
+      <div class="price-section">
+        <span class="new-price">${product.newprice}</span>
+        <span class="old-price">${product.oldprice}</span>
+        <span class="discount">${product.discount}</span>
       </div>
-    `
+      <button 
+        class="add-to-cart"
+        data-name="${product.title}"
+        data-price="${product.newprice}"
+        data-img="${product.img}"
+        data-oldprice="${product.oldprice}"
+        data-discount="${product.discount}"
+      >
+        <i class="fa fa-shopping-cart cart-icon"></i> ADD TO CART
+      </button>
+    </div>
+  `
     ).join("");
   }
 
@@ -218,20 +236,75 @@ document.addEventListener("DOMContentLoaded", () => {
     ? parseInt(localStorage.getItem("cartCount"))
     : 0;
 
+  let cartItems = localStorage.getItem("cartItems")
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [];
+
   const cartCount = document.getElementById("cartCount");
+  const itemShow = document.getElementById("itemShow");
+  const cartToggle = document.getElementById("cartToggle");
+  const cartPanel = document.getElementById("cartPanel");
+
   cartCount.textContent = count;
 
-  function setupCartButtons() {
-    const cartButton = document.querySelectorAll(".add-to-cart");
+  function displayCartItems() {
+    itemShow.innerHTML = "";
 
-    cartButton.forEach((btn) => {
+    if (cartItems.length === 0) {
+      itemShow.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+
+    cartItems.forEach((product) => {
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+      <img src="${product.img}" alt="${product.title}" />
+      <div class="cart-details">
+        <h4>${product.title}</h4>
+        <p>
+          <strong>Rs. ${product.newprice}</strong> 
+          <span>Rs. ${product.oldprice || ""}</span> 
+          <span style="color: green;">${product.discount || ""}</span>
+        </p>
+      </div>
+    `;
+      itemShow.appendChild(div);
+    });
+  }
+
+  function setupCartButtons() {
+    const cartButtons = document.querySelectorAll(".add-to-cart");
+
+    cartButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
+        const name = btn.getAttribute("data-name") || "No Title";
+        const price = btn.getAttribute("data-price") || "0";
+        const img = btn.getAttribute("data-img") || "";
+        const oldPrice = btn.getAttribute("data-oldprice") || "";
+        const discount = btn.getAttribute("data-discount") || "";
+
+        cartItems.push({
+          title: name,
+          newprice: price,
+          img: img,
+          oldprice: oldPrice,
+          discount: discount,
+        });
+
         count++;
-        cartCount.textContent = count;
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
         localStorage.setItem("cartCount", count);
+
+        cartCount.textContent = count;
+        displayCartItems();
       });
     });
   }
+
+  cartToggle.addEventListener("click", () => {
+    cartPanel.classList.toggle("active");
+  });
 
   BtnLeft.addEventListener("click", () => {
     Slider.scrollBy({ left: -300, behavior: "smooth" });
@@ -249,4 +322,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderInitialProducts();
   renderBestSellers();
   setupCartButtons();
+  displayCartItems();
 });
