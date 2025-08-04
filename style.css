@@ -84,21 +84,23 @@ nav {
   gap: 20px;
 }
 
-.fa-cart-shopping {
-  font-size: 20px;
+.cart-wrapper {
   position: relative;
   cursor: pointer;
 }
 
-.fa-cart-shopping::after {
-  content: "0";
+.cart-wrapper i {
+  font-size: 20px;
+}
+
+#cartCount {
   position: absolute;
-  top: -10px;
+  top: -8px;
   right: -10px;
   background-color: #e63946;
   color: white;
   font-size: 10px;
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 50%;
 }
 

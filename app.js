@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const noResults = document.querySelector(".no-results");
   const mainProductContainer = document.getElementById("productContainer");
 
-  const Addproducts = document.getElementById("add");
-
   const Products = [
     {
       img: "./img/air.png",
@@ -152,11 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-
-  Addproducts.addEventListener("click", () => {
-    
-  })
-
   function createProductCard(product) {
     return `
       <div class="product-card">
@@ -221,6 +214,25 @@ document.addEventListener("DOMContentLoaded", () => {
     handleSearch(query);
   });
 
+  let count = localStorage.getItem("cartCount")
+    ? parseInt(localStorage.getItem("cartCount"))
+    : 0;
+
+  const cartCount = document.getElementById("cartCount");
+  cartCount.textContent = count;
+
+  function setupCartButtons() {
+    const cartButton = document.querySelectorAll(".add-to-cart");
+
+    cartButton.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        count++;
+        cartCount.textContent = count;
+        localStorage.setItem("cartCount", count);
+      });
+    });
+  }
+
   BtnLeft.addEventListener("click", () => {
     Slider.scrollBy({ left: -300, behavior: "smooth" });
   });
@@ -236,4 +248,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderInitialProducts();
   renderBestSellers();
+  setupCartButtons();
 });
